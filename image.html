@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NOTAM Image</title>
+    <style>
+        #backButtonTop {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 10px 20px;
+            background-color: #f8f8f8;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #backButtonTop:hover {
+            background-color: #e0e0e0;
+        }
+
+        img {
+            display: block;
+            margin: 50px auto;
+            max-width: 90%;
+        }
+    </style>
+</head>
+<body>
+
+<button id="backButtonTop">Back</button>
+<img src="file:///S:/AFSTA/LocalWeb/test_notam/image.png" alt="image">
+
+<script>
+    document.getElementById("backButtonTop").addEventListener("click", function() {
+        const previousURL = localStorage.getItem('previousURL');
+        if (previousURL) {
+            window.location.href = previousURL;
+        } else {
+            window.location.href = "file:///S:/AFSTA/LocalWeb/NOTAMS_1.htm";
+        }
+    });
+</script>
+
+</body>
+</html>
