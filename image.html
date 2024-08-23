@@ -33,12 +33,9 @@
 
 <script>
     document.getElementById("backButtonTop").addEventListener("click", function() {
-        const previousURL = localStorage.getItem('previousURL');
-        if (previousURL) {
-            window.location.href = previousURL;
-        } else {
-            window.location.href = "file:///S:/AFSTA/LocalWeb/NOTAMS_1.htm";
-        }
+        localStorage.setItem('previousPage', 5);  // Set the return page to 5
+        console.log('Setting previousPage to 5');  // Debugging log
+        window.location.href = "image.html";  // Ensure this matches your main HTML file name
     });
 </script>
 
