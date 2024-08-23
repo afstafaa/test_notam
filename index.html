@@ -61,9 +61,24 @@
             font-weight: bold;
         }
 
+        #startButton {
+            padding: 20px 40px;
+            background-color: red;
+            color: white;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 36px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 20%;
+            text-align: center;
+        }
+
         #resetButton {
             padding: 10px 20px;
-            background-color: #f8f8f8;
+            background-color: white;
             color: black;
             border: 1px solid #ccc;
             cursor: pointer;
@@ -73,6 +88,7 @@
 
         #resetButton:hover {
             background-color: #e0e0e0;
+            color: black;
         }
 
         #backButton, #nextButton, #finishButton, #finButton, #finalFinishButton {
@@ -101,44 +117,24 @@
         .hidden {
             display: none;
         }
-
-        /* Style for the START button on Page 0 */
-        #startButton {
-            padding: 20px 40px;
-            background-color: red;
-            color: white;
-            font-size: 36px;
-            border: none;
-            cursor: pointer;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-        }
-
-        #startButton:hover {
-            background-color: darkred;
-        }
     </style>
 </head>
 <body>
 
-<!-- Page 0: Start Page -->
+<h2 id="title">NOTAM Structure</h2>
+
 <div id="page0" class="page">
     <button id="startButton">START</button>
 </div>
 
-<!-- Page 1: NOTAM 1 -->
 <div id="page1" class="page hidden">
-    <h2 id="title">NO<a id="hiddenLink" href="#" class="hidden-link" style="text-decoration: none; color: inherit;">T</a>AM Structure</h2>
     <div class="link-container">
         <a href="https://www.faa.gov/documentLibrary/media/Order/7930.2T_Bsc_dtd_12_14_23_FINAL.pdf" target="_blank">7930.2T</a>
         <a href="https://notams.aim.faa.gov/en2_samples.pdf" target="_blank">ENII Samples</a>
         <a href="https://www.faa.gov/air_traffic/flight_info/aeronav/digital_products/dafd/" target="_blank">Chart Supp</a>
     </div>
-    <p id="notam-title" class="notam-title">NOTAM 1</p>
-    <p id="notam-description" class="description-text">
+    <p id="notam-title-1" class="notam-title">NOTAM 1</p>
+    <p id="notam-description-1" class="description-text">
         As the bitter Alaskan winter began to settle in, a dedicated state employee picked up the phone to report a crucial update to flight service. 
         "Hello, I need to inform you that Talkeetna Runway One Eight Three Six is currently experiencing an issue. The runway edge lights are out of service," 
         he explained, his voice tinged with concern. "This situation will persist from now until the end of December," he continued, glancing at his notes for 
@@ -146,252 +142,298 @@
         of the message was clear, and he knew it would require pilots to exercise additional caution in the dark, frigid months ahead.
     </p>  
     <p id="page1-note" class="description-text" style="font-size: 18px;">(the default NOTAM # will be 06/005 and default start date/time will be 2406121200)</p>
+
     <div class="dropzone-container">
-        <input class="dropzone" id="dropzone" type="text" data-correct="!TKA 06/005 TKA RWY 18/36 REDL U/S 2406121200-2412312359" style="width:1500px;">
+        <input class="dropzone" id="dropzone-1" type="text" data-correct="!TKA 06/005 TKA RWY 18/36 REDL U/S 2406121200-2412312359" style="width:1500px;">
     </div>
+
     <div class="button-container">
-        <button id="resetButton">Reset</button>
-        <button id="backButton" style="display: none;">Back</button>
-        <button id="nextButton" style="display: none;">Next</button>
+        <button id="resetButton-1">Reset</button>
+        <button id="nextButton-1" style="display: none;">Next</button>
     </div>
-    <div id="correctNotam" style="display: none;">!TKA 06/005 TKA RWY 18/36 REDL U/S 2406121200-2412312359</div>
+
+    <div id="correctNotam-1" style="display: none;">!TKA 06/005 TKA RWY 18/36 REDL U/S 2406121200-2412312359</div>
 </div>
 
-<!-- Page 2: NOTAM 2 -->
 <div id="page2" class="page hidden">
-    <h2 id="title">NO<a id="hiddenLink" href="#" class="hidden-link" style="text-decoration: none; color: inherit;">T</a>AM Structure</h2>
     <div class="link-container">
         <a href="https://www.faa.gov/documentLibrary/media/Order/7930.2T_Bsc_dtd_12_14_23_FINAL.pdf" target="_blank">7930.2T</a>
         <a href="https://notams.aim.faa.gov/en2_samples.pdf" target="_blank">ENII Samples</a>
         <a href="https://www.faa.gov/air_traffic/flight_info/aeronav/digital_products/dafd/" target="_blank">Chart Supp</a>
     </div>
-    <p id="notam-title" class="notam-title">NOTAM 2</p>
-    <p id="notam-description" class="description-text">
-        With a sense of urgency, the state employee dialed flight service, bracing herself for the impact of her report. 
-        "This is critical," she began, her voice carrying the weight of the situation. 
-        "Gulkana Airport will be closed starting January 5, 2024, at 1200Z, this closure will extend all the way to February 8, 2024, ending at 2359Z," 
-        she continued, the timeline stark and uncompromising. "This isn't just a minor inconvenience—it's a full shutdown for over a month," 
-        she emphasized, feeling the gravity of the situation pressing down on her. "Please ensure all pilots are aware of the NOTAM; 
-        the consequences of missing this could be severe."
-    </p>
+    <p id="notam-title-2" class="notam-title">NOTAM 2</p>
+    <p id="notam-description-2" class="description-text">
+        With a sense of urgency, the state employee dialed flight service, bracing herself for the impact of her report. "This is critical," she began, her voice carrying the weight of the situation. "Gulkana Airport will be closed starting January 5, 2024, at 1200Z, this closure will extend all the way to February 8, 2024, ending at 2359Z," she continued, the timeline stark and uncompromising. "This isn't just a minor inconvenience—it's a full shutdown for over a month," she emphasized, feeling the gravity of the situation pressing down on her. "Please ensure all pilots are aware of the NOTAM; the consequences of missing this could be severe."
+    </p>  
     <p id="page2-note" class="description-text" style="font-size: 18px;">(the default NOTAM # will be 01/009)</p>
+
     <div class="dropzone-container">
-        <input class="dropzone" id="dropzone2" type="text" data-correct="!GKN 01/009 GKN AD AP CLSD 2401051200-2402082359" style="width:1500px;">
+        <input class="dropzone" id="dropzone-2" type="text" data-correct="!GKN 01/009 GKN AD AP CLSD 2401051200-2402082359" style="width:1500px;">
     </div>
+
     <div class="button-container">
-        <button id="resetButton2">Reset</button>
-        <button id="backButton2">Back</button>
-        <button id="nextButton2" style="display: none;">Next</button>
+        <button id="resetButton-2">Reset</button>
+        <button id="backButton-2">Back</button>
+        <button id="nextButton-2" style="display: none;">Next</button>
     </div>
-    <div id="correctNotam2" style="display: none;">!GKN 01/009 GKN AD AP CLSD 2401051200-2402082359</div>
+
+    <div id="correctNotam-2" style="display: none;">!GKN 01/009 GKN AD AP CLSD 2401051200-2402082359</div>
 </div>
 
-<!-- Page 3: NOTAM 3 -->
 <div id="page3" class="page hidden">
-    <h2 id="title">NO<a id="hiddenLink" href="#" class="hidden-link" style="text-decoration: none; color: inherit;">T</a>AM Structure</h2>
     <div class="link-container">
         <a href="https://www.faa.gov/documentLibrary/media/Order/7930.2T_Bsc_dtd_12_14_23_FINAL.pdf" target="_blank">7930.2T</a>
         <a href="https://notams.aim.faa.gov/en2_samples.pdf" target="_blank">ENII Samples</a>
         <a href="https://www.faa.gov/air_traffic/flight_info/aeronav/digital_products/dafd/" target="_blank">Chart Supp</a>
     </div>
-    <p id="notam-title" class="notam-title">NOTAM 3</p>
-    <p id="notam-description" class="description-text">
-        On July 4th, 2024, at precisely 12 p.m. local time, the atmosphere was tense as the airport manager, doubling as a pilot, 
-        urgently called Kenai FSS from his satellite phone, the remote isolation of Cape Romanzof amplifying the severity of his news. 
-        "Kenai, we have a serious issue here," his voice crackled through the static, a mixture of frustration and helplessness. 
-        "There's a massive hole in the pavement, and I have no choice but to close the runway immediately, until further notice." 
-        The weight of his words hung heavy, the implications of such a closure reverberating through the line.
-    </p>
+    <p id="notam-title-3" class="notam-title">NOTAM 3</p>
+    <p id="notam-description-3" class="description-text">
+        On July 4th, 2024, at precisely 12 p.m. local time, the atmosphere was tense as the airport manager, doubling as a pilot, urgently called Kenai FSS from his satellite phone, the remote isolation of Cape Romanzof amplifying the severity of his news. "Kenai, we have a serious issue here," his voice crackled through the static, a mixture of frustration and helplessness. "There's a massive hole in the pavement, and I have no choice but to close the runway immediately, until further notice." The weight of his words hung heavy, the implications of such a closure reverberating through the line.
+        <br><br>
+        Kenai, trying to grasp the gravity of the situation, asked, "How long do you estimate the runway will be closed?" The manager sighed, his exhaustion palpable even over the satellite connection. "It’s going to be a challenge to get the repairs done," he admitted, "We’re facing a severe shortage of pavement supplies." He paused, calculating the grim timeline. "Given the current circumstances, I estimate the runway will be closed for about six months, until the end of day Zulu." The long silence that followed spoke volumes about the daunting task ahead and the isolation Cape Romanzof would face in the coming months.
+    </p>  
     <p id="page3-note" class="description-text" style="font-size: 18px;">(the default NOTAM # will be 07/002)</p>
+
     <div class="dropzone-container">
-        <input class="dropzone" id="dropzone3" type="text" data-correct="!PACZ 07/002 CZF RWY 02/20 CLSD 2407042000-2501042359" style="width:1500px;">
+        <input class="dropzone" id="dropzone-3" type="text" data-correct="!PACZ 07/002 CZF RWY 02/20 CLSD 2407042000-2501042359" style="width:1500px;">
     </div>
+
     <div class="button-container">
-        <button id="resetButton3">Reset</button>
-        <button id="backButton3">Back</button>
-        <button id="nextButton3" style="display: none;">Next</button>
+        <button id="resetButton-3">Reset</button>
+        <button id="backButton-3">Back</button>
+        <button id="nextButton-3" style="display: none;">Next</button>
     </div>
-    <div id="correctNotam3" style="display: none;">!PACZ 07/002 CZF RWY 02/20 CLSD 2407042000-2501042359</div>
+
+    <div id="correctNotam-3" style="display: none;">!PACZ 07/002 CZF RWY 02/20 CLSD 2407042000-2501042359</div>
 </div>
 
-<!-- Page 4: NOTAM 4 -->
 <div id="page4" class="page hidden">
-    <h2 id="title">NO<a id="hiddenLink" href="#" class="hidden-link" style="text-decoration: none; color: inherit;">T</a>AM Structure</h2>
     <div class="link-container">
         <a href="https://www.faa.gov/documentLibrary/media/Order/7930.2T_Bsc_dtd_12_14_23_FINAL.pdf" target="_blank">7930.2T</a>
         <a href="https://notams.aim.faa.gov/en2_samples.pdf" target="_blank">ENII Samples</a>
         <a href="https://www.faa.gov/air_traffic/flight_info/aeronav/digital_products/dafd/" target="_blank">Chart Supp</a>
     </div>
-    <p id="notam-title" class="notam-title">NOTAM 4</p>
-    <p id="notam-description" class="description-text">
-        The quiet serenity of Valdez, Pioneer Field was soon to be interrupted by the hum of heightened activity. 
-        As the news of a significant oil discovery spread, the once sleepy airfield prepared for an influx of important pilots and their aircraft. 
-        In response, a temporary control tower was swiftly established, ensuring the increased air traffic could be managed safely and efficiently. 
-        Operating on frequency 121.7, this tower would be active daily from 1500Z to 0300Z, starting August 1, 2024. 
-        The community buzzed with anticipation as the local economy stood on the brink of transformation. 
-        With the temporary control tower operations extending until September 15, 2025 at 7pm.
-    </p>
+    <p id="notam-title-4" class="notam-title">NOTAM 4</p>
+    <p id="notam-description-4" class="description-text">
+        The quiet serenity of Valdez, Pioneer Field was soon to be interrupted by the hum of heightened activity. As the news of a significant oil discovery spread, the once sleepy airfield prepared for an influx of important pilots and their aircraft. In response, a temporary control tower was swiftly established, ensuring the increased air traffic could be managed safely and efficiently. Operating on frequency 121.7, this tower would be active daily from 1500Z to 0300Z, starting August 1, 2024. The community buzzed with anticipation as the local economy stood on the brink of transformation. With the temporary control tower operations extending until September 15, 2025 at 7pm.
+    </p>  
     <p id="page4-note" class="description-text" style="font-size: 18px;">(the default NOTAM # will be 08/009)</p>
+
     <div class="dropzone-container">
-        <input class="dropzone" id="dropzone4" type="text" data-correct="!VDZ 08/009 VDZ SVC TEMPO TWR 121.7 DLY 1500-0300 2408011500-2509160300" style="width:1500px;">
+        <input class="dropzone" id="dropzone-4" type="text" data-correct="!VDZ 08/009 VDZ SVC TEMPO TWR 121.7 DLY 1500-0300 2408011500-2509160300" style="width:1500px;">
     </div>
+
     <div class="button-container">
-        <button id="resetButton4">Reset</button>
-        <button id="backButton4">Back</button>
-        <button id="nextButton4" style="display: none;">Next</button>
+        <button id="resetButton-4">Reset</button>
+        <button id="backButton-4">Back</button>
+        <button id="nextButton-4" style="display: none;">Next</button>
     </div>
-    <div id="correctNotam4" style="display: none;">!VDZ 08/009 VDZ SVC TEMPO TWR 121.7 DLY 1500-0300 2408011500-2509160300</div>
+
+    <div id="correctNotam-4" style="display: none;">!VDZ 08/009 VDZ SVC TEMPO TWR 121.7 DLY 1500-0300 2408011500-2509160300</div>
 </div>
 
-<!-- Page 5: NOTAM 5 -->
 <div id="page5" class="page hidden">
-    <h2 id="title">NO<a id="hiddenLink" href="#" class="hidden-link" style="text-decoration: none; color: inherit;">T</a>AM Structure</h2>
     <div class="link-container">
         <a href="https://www.faa.gov/documentLibrary/media/Order/7930.2T_Bsc_dtd_12_14_23_FINAL.pdf" target="_blank">7930.2T</a>
         <a href="https://notams.aim.faa.gov/en2_samples.pdf" target="_blank">ENII Samples</a>
         <a href="https://www.faa.gov/air_traffic/flight_info/aeronav/digital_products/dafd/" target="_blank">Chart Supp</a>
     </div>
-    <p id="notam-title" class="notam-title">NOTAM 5</p>
-    <p id="notam-description" class="description-text">
-        On June 15, 2022, the SOC in Anchorage, dealing with a malfunctioning system, hesitantly called Fairbanks Flight Service to request assistance in issuing a NOTAM at 1415 local. 
-        The SOC employee, sounding uncertain, explained, "Hi, could you help us out? Our system isn't working. We need a NOTAM to read, uh, that the Buckland Nondirectional Radio Beacon and Distance Measuring Equipment... 
-        is decommissioned, effective immediately." He paused, questioning his wording. "Is that clear? I think that's right. Can you issue that for us?"
-    </p>
+    <p id="notam-title-5" class="notam-title">NOTAM 5</p>
+    <p id="notam-description-5" class="description-text">
+        On June 15, 2022, the SOC in Anchorage, dealing with a malfunctioning system, hesitantly called Fairbanks Flight Service to request assistance in issuing a NOTAM at 1415 local. The SOC employee, sounding uncertain, explained, "Hi, could you help us out? Our system isn't working. We need a NOTAM to read, uh, that the Buckland Nondirectional Radio Beacon and Distance Measuring Equipment... is decommissioned, effective immediately." He paused, questioning his wording. "Is that clear? I think that's right. Can you issue that for us?" (A few days later the SOC employee found himself back to remedial training).
+    </p>  
     <p id="page5-note" class="description-text" style="font-size: 18px;">(the default NOTAM # will be 06/011)</p>
+
     <div class="dropzone-container">
-        <input class="dropzone" id="dropzone5" type="text" data-correct="!WLK 06/011 BVK NAV BVK NDB U/S 2206152215-PERM" style="width:1500px;">
+        <input class="dropzone" id="dropzone-5" type="text" data-correct="!WLK 06/011 BVK NAV BVK NDB U/S 2206152215-PERM" style="width:1500px;">
     </div>
+
     <div class="button-container">
-        <button id="resetButton5">Reset</button>
-        <button id="backButton5">Back</button>
-        <button id="finButton5" style="display: none;">Finish</button>
+        <button id="resetButton-5">Reset</button>
+        <button id="backButton-5">Back</button>
+        <button id="finishButton-5" style="display: none;" onclick="handleFinalFinishButtonClick()">FINISH</button>
+        <button id="finButton-5" style="display: none;" onclick="handleFinButtonClick()">Finish</button>
+        <button id="finalFinishButton-5" style="display: none;" onclick="handleFinalFinishButtonClick()">FINISH</button>
     </div>
-    <div id="correctNotam5" style="display: none;">!WLK 06/011 BVK NAV BVK NDB U/S 2206152215-PERM</div>
+
+    <div id="correctNotam-5" style="display: none;">!WLK 06/011 BVK NAV BVK NDB U/S 2206152215-PERM</div>
+</div>
+
+<div id="image-page" class="page hidden">
+    <button id="backButton-image">Back</button>
+    <img src="image.png" alt="Resulting Image">
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        const pages = document.querySelectorAll('.page');
         const hiddenLink = document.getElementById("hiddenLink");
-        const notamTitleElement = document.getElementById("notam-title");
-        const descriptionElement = document.getElementById("notam-description");
-        const dropzone1 = document.getElementById("dropzone");
-        const dropzone2 = document.getElementById("dropzone2");
-        const dropzone3 = document.getElementById("dropzone3");
-        const dropzone4 = document.getElementById("dropzone4");
-        const dropzone5 = document.getElementById("dropzone5");
         const startButton = document.getElementById("startButton");
-        const resetButtons = document.querySelectorAll('[id^=resetButton]');
-        const backButtons = document.querySelectorAll('[id^=backButton]');
-        const nextButtons = document.querySelectorAll('[id^=nextButton]');
-        const finButton5 = document.getElementById("finButton5");
-        const finalFinishButton = document.getElementById("finalFinishButton");
-        const correctNotams = document.querySelectorAll('[id^=correctNotam]');
+        const nextButton1 = document.getElementById("nextButton-1");
+        const backButton2 = document.getElementById("backButton-2");
+        const nextButton2 = document.getElementById("nextButton-2");
+        const backButton3 = document.getElementById("backButton-3");
+        const nextButton3 = document.getElementById("nextButton-3");
+        const backButton4 = document.getElementById("backButton-4");
+        const nextButton4 = document.getElementById("nextButton-4");
+        const backButton5 = document.getElementById("backButton-5");
+        const finButton5 = document.getElementById("finButton-5");
+        const finalFinishButton5 = document.getElementById("finalFinishButton-5");
+        const resetButtons = document.querySelectorAll("[id^=resetButton]");
+        const backButtonImage = document.getElementById("backButton-image");
 
         let currentPage = 0;
         let savedValues = {};
 
-        function resetAllPages() {
-            resetButtons.forEach(button => button.click());
-        }
-
-        function checkAnswer(dropzone, correctNotam, nextButton, finishButton, finalFinishButton) {
-            if (dropzone.value === dropzone.getAttribute("data-correct")) {
-                correctNotam.style.display = "block";
-                nextButton.style.display = "inline-block";
-            } else if (dropzone.value.startsWith("!WLK 06/011 BVK")) {
-                finButton5.style.display = "inline-block";
-                finishButton.style.display = "none";
-                finalFinishButton.style.display = "none";
-            } else {
-                finButton5.style.display = "none";
-                finishButton.style.display = "none";
-                finalFinishButton.style.display = "none";
+        function checkAnswer() {
+            if (currentPage === 5) {
+                if (document.getElementById("dropzone-5").value === "!WLK 06/011 BVK NAV BVK NDB U/S 2206152215-PERM") {
+                    finalFinishButton5.style.display = "inline-block";
+                    finButton5.style.display = "none";
+                } else if (document.getElementById("dropzone-5").value.startsWith("!WLK 06/011 BVK")) {
+                    finButton5.style.display = "inline-block";
+                    finalFinishButton5.style.display = "none";
+                } else {
+                    finButton5.style.display = "none";
+                    finalFinishButton5.style.display = "none";
+                }
+            } else if (document.getElementById("dropzone-" + currentPage).value === document.getElementById("dropzone-" + currentPage).getAttribute("data-correct")) {
+                document.getElementById("correctNotam-" + currentPage).style.display = "block";
+                document.getElementById("nextButton-" + currentPage).style.display = "inline-block";
             }
             saveCurrentValues();
         }
 
-        function resetPage(dropzone, correctNotam, nextButton) {
-            dropzone.value = "";
-            correctNotam.style.display = "none";
-            nextButton.style.display = "none";
+        function resetPage() {
+            document.getElementById("dropzone-" + currentPage).value = "";
+            document.getElementById("correctNotam-" + currentPage).style.display = "none";
+            document.getElementById("nextButton-" + currentPage).style.display = "none";
+            if (currentPage === 5) {
+                finButton5.style.display = "none";
+                finalFinishButton5.style.display = "none";
+            }
+            hideAllNotes();
+            savedValues = {};
+            localStorage.clear();
         }
 
-        function showPage(pageNumber) {
-            pages.forEach((page, index) => {
-                if (index === pageNumber) {
-                    page.classList.remove('hidden');
-                } else {
-                    page.classList.add('hidden');
-                }
-            });
-            currentPage = pageNumber;
-        }
-
-        function handleStartButtonClick() {
-            resetAllPages();
-            showPage(1);
-        }
-
-        function handleFinButtonClick() {
+        function goToPage(pageNumber) {
             saveCurrentValues();
-            localStorage.setItem('previousPage', 5);
-            localStorage.setItem('previousURL', window.location.href);
-            window.location.href = "image.html";
-        }
+            clearCurrentPage();
+            currentPage = pageNumber;
 
-        function handleBackButtonClick() {
-            showPage(currentPage - 1);
-        }
+            if (pageNumber === 0) {
+                document.getElementById("page0").classList.remove("hidden");
+            } else if (pageNumber === "image") {
+                document.getElementById("image-page").classList.remove("hidden");
+            } else {
+                document.getElementById("page" + pageNumber).classList.remove("hidden");
+            }
 
-        function handleNextButtonClick() {
-            showPage(currentPage + 1);
+            restoreSavedValues();
         }
 
         function saveCurrentValues() {
             savedValues[currentPage] = {
-                dropzoneValue: document.getElementById(`dropzone${currentPage}`).value
+                dropzoneValue: document.getElementById("dropzone-" + currentPage).value,
+                notamDisplayText: document.getElementById("correctNotam-" + currentPage).innerText,
+                notamDisplayStyle: document.getElementById("correctNotam-" + currentPage).style.display,
+                nextButtonStyle: document.getElementById("nextButton-" + currentPage).style.display
             };
-            localStorage.setItem(`page${currentPage}DropzoneValue`, document.getElementById(`dropzone${currentPage}`).value);
+
+            localStorage.setItem(`page${currentPage}DropzoneValue`, document.getElementById("dropzone-" + currentPage).value);
+            localStorage.setItem(`page${currentPage}NotamDisplay`, document.getElementById("correctNotam-" + currentPage).style.display);
+            localStorage.setItem(`page${currentPage}NextButton`, document.getElementById("nextButton-" + currentPage).style.display);
+
+            if (currentPage === 5) {
+                localStorage.setItem(`page${currentPage}FinButton`, finButton5.style.display);
+                localStorage.setItem(`page${currentPage}FinalFinishButton`, finalFinishButton5.style.display);
+            }
         }
+
+        function restoreSavedValues() {
+            if (savedValues[currentPage]) {
+                document.getElementById("dropzone-" + currentPage).value = savedValues[currentPage].dropzoneValue;
+                document.getElementById("correctNotam-" + currentPage).innerText = savedValues[currentPage].notamDisplayText;
+                document.getElementById("correctNotam-" + currentPage).style.display = savedValues[currentPage].notamDisplayStyle;
+                document.getElementById("nextButton-" + currentPage).style.display = savedValues[currentPage].nextButtonStyle;
+
+                if (currentPage === 5) {
+                    finButton5.style.display = localStorage.getItem(`page${currentPage}FinButton`);
+                    finalFinishButton5.style.display = localStorage.getItem(`page${currentPage}FinalFinishButton`);
+                }
+            }
+
+            const pageDropzoneValue = localStorage.getItem(`page${currentPage}DropzoneValue`);
+            if (pageDropzoneValue) {
+                document.getElementById("dropzone-" + currentPage).value = pageDropzoneValue;
+            }
+
+            const pageNotamDisplay = localStorage.getItem(`page${currentPage}NotamDisplay`);
+            if (pageNotamDisplay) {
+                document.getElementById("correctNotam-" + currentPage).style.display = pageNotamDisplay;
+            }
+
+            const pageNextButton = localStorage.getItem(`page${currentPage}NextButton`);
+            if (pageNextButton) {
+                document.getElementById("nextButton-" + currentPage).style.display = pageNextButton;
+            }
+        }
+
+        function clearCurrentPage() {
+            document.querySelectorAll('.page').forEach(function(page) {
+                page.classList.add("hidden");
+            });
+        }
+
+        function hideAllNotes() {
+            document.querySelectorAll('[id$=-note]').forEach(function(note) {
+                note.classList.add("hidden");
+            });
+        }
+
+        function handleFinButtonClick() {
+            saveCurrentValues();
+            localStorage.setItem('previousPage', currentPage);
+            localStorage.setItem('previousURL', window.location.href);
+            goToPage("image");
+        }
+
+        function handleFinalFinishButtonClick() {
+            window.location.href = "video.mp4";
+        }
+
+        function handleStartButtonClick() {
+            goToPage(1);
+            resetPage();
+        }
+
+        resetButtons.forEach(function(button) {
+            button.addEventListener("click", resetPage);
+        });
 
         startButton.addEventListener("click", handleStartButtonClick);
-        finButton5.addEventListener("click", handleFinButtonClick);
-        backButtons.forEach(button => button.addEventListener("click", handleBackButtonClick));
-        nextButtons.forEach(button => button.addEventListener("click", handleNextButtonClick));
+        nextButton1.addEventListener("click", function() { goToPage(2); });
+        backButton2.addEventListener("click", function() { goToPage(1); });
+        nextButton2.addEventListener("click", function() { goToPage(3); });
+        backButton3.addEventListener("click", function() { goToPage(2); });
+        nextButton3.addEventListener("click", function() { goToPage(4); });
+        backButton4.addEventListener("click", function() { goToPage(3); });
+        nextButton4.addEventListener("click", function() { goToPage(5); });
+        backButton5.addEventListener("click", function() { goToPage(4); });
+        backButtonImage.addEventListener("click", function() { goToPage(5); });
 
-        dropzone1.addEventListener("input", function () {
-            checkAnswer(dropzone1, correctNotams[0], nextButtons[0]);
-        });
-        dropzone2.addEventListener("input", function () {
-            checkAnswer(dropzone2, correctNotams[1], nextButtons[1]);
-        });
-        dropzone3.addEventListener("input", function () {
-            checkAnswer(dropzone3, correctNotams[2], nextButtons[2]);
-        });
-        dropzone4.addEventListener("input", function () {
-            checkAnswer(dropzone4, correctNotams[3], nextButtons[3]);
-        });
-        dropzone5.addEventListener("input", function () {
-            checkAnswer(dropzone5, correctNotams[4], nextButtons[4]);
-        });
-
-        resetButtons.forEach((button, index) => {
-            button.addEventListener("click", function () {
-                resetPage(document.getElementById(`dropzone${index + 1}`), correctNotams[index], nextButtons[index]);
-            });
-        });
-
-        // Restore state if returning from image.html
         const previousPage = localStorage.getItem('previousPage');
-        if (previousPage) {
-            showPage(parseInt(previousPage));
-            localStorage.removeItem('previousPage');
+        if (previousPage && window.location.href.includes("image.html")) {
+            goToPage(parseInt(previousPage));
         } else {
-            showPage(0);
+            goToPage(0);
         }
+
+        document.querySelectorAll(".dropzone").forEach(function(dropzone) {
+            dropzone.addEventListener("input", checkAnswer);
+        });
     });
 </script>
 
