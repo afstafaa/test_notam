@@ -4,370 +4,67 @@
     <meta charset="UTF-8">
     <title>NOTAMS</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Comic+Sans+MS:wght@700&display=swap');
-
-        #title {
-            text-align: center;
-            font-size: 48px;
-        }
-
-        .notam-title {
-            text-align: left;
-            font-size: 36px;
-            margin-bottom: 20px;
-        }
-
-        .link-container {
-            text-align: right;
-            margin-bottom: 10px;
-            font-size: 24px;
-            position: relative;
-        }
-
-        .link-container a:nth-child(1) {
-            position: relative;
-            left: -300px;
-        }
-
-        .link-container a:nth-child(2) {
-            position: relative;
-            left: -200px;
-        }
-
-        .link-container a:nth-child(3) {
-            position: relative;
-            left: -100px;
-        }
-
-        #notam-description {
-            text-align: left;
-            font-size: 30px;
-        }
-
-        .dropzone-container {
-            text-align: left;
-            margin: 5px;
-        }
-
-        .dropzone {
-            padding: 5px;
-            min-width: 50px;
-            min-height: 50px;
-            background-color: #f4f4f4;
-            border: 4px dashed #ccc;
-            margin-bottom: 25px;
-            font-size: 24px;
-            font-family: 'Comic Sans MS', sans-serif;
-            font-weight: bold;
-        }
-
-        #resetButton, #backButton, #nextButton, #finishButton, #finButton, #finalFinishButton {
-            padding: 10px 20px;
-            background-color: #f8f8f8;
-            border: 1px solid #ccc;
-            cursor: pointer;
-            margin: 5px;
-            transition: background-color 0.3s;
-        }
-
-        #resetButton:hover, #backButton:hover, #nextButton:hover, #finishButton:hover, #finButton:hover, #finalFinishButton:hover {
-            background-color: #e0e0e0;
-        }
-
-        #finalFinishButton {
-            background-color: red;
-            color: white;
-            font-weight: bold;
-        }
-
-        #correctNotam {
-            font-size: 32px;
-        }
-
+        /* Minimal CSS for testing */
         .hidden {
             display: none;
+        }
+        .page {
+            padding: 20px;
+            font-size: 24px;
         }
     </style>
 </head>
 <body>
 
-<h2 id="title">NO<a id="hiddenLink" href="#" class="hidden-link" style="text-decoration: none; color: inherit;">T</a>AM Structure</h2>
-<div class="link-container">
-    <a href="https://www.faa.gov/documentLibrary/media/Order/7930.2T_Bsc_dtd_12_14_23_FINAL.pdf" target="_blank">7930.2T</a>
-    <a href="https://notams.aim.faa.gov/en2_samples.pdf" target="_blank">ENII Samples</a>
-    <a href="https://www.faa.gov/air_traffic/flight_info/aeronav/digital_products/dafd/" target="_blank">Chart Supp</a>
-</div>
-<p id="notam-title" class="notam-title">NOTAM 1</p>
-<p id="notam-description" class="description-text">
-    As the bitter Alaskan winter began to settle in, a dedicated state employee picked up the phone to report a crucial update to flight service. 
-    "Hello, I need to inform you that Talkeetna Runway One Eight Three Six is currently experiencing an issue. The runway edge lights are out of service," 
-    he explained, his voice tinged with concern. "This situation will persist from now until the end of December," he continued, glancing at his notes for 
-    confirmation. "Please make sure this is communicated to all relevant parties, as it affects our operations through the end of Zulu time." The gravity 
-    of the message was clear, and he knew it would require pilots to exercise additional caution in the dark, frigid months ahead.
-</p>  
-<p id="page1-note" class="description-text" style="font-size: 18px;">(the default NOTAM # will be 06/005 and default start date/time will be 2406121200)</p>
-<p id="page2-note" class="description-text hidden" style="font-size: 18px;">(the default NOTAM # will be 01/009)</p>
-<p id="page3-note" class="description-text hidden" style="font-size: 18px;">(the default NOTAM # will be 07/002)</p>
-<p id="page4-note" class="description-text hidden" style="font-size: 18px;">(the default NOTAM # will be 08/009)</p>
-<p id="page5-note" class="description-text hidden" style="font-size: 18px;">(the default NOTAM # will be 06/011)</p>
+<div id="page0" class="page">Welcome to Page 0<br><button id="startButton">START</button></div>
+<div id="page1" class="page hidden">This is Page 1<br><button id="backTo0">Back to Page 0</button></div>
+<div id="page5" class="page hidden">This is Page 5 (Should be displayed after clicking back button on image.html)</div>
 
-<div class="dropzone-container">
-    <input class="dropzone" id="dropzone" type="text" data-correct="!TKA 06/005 TKA RWY 18/36 REDL U/S 2406121200-2412312359" style="width:1500px;">
-</div>
-
-<div class="button-container">
-    <button id="resetButton">Reset</button>
-    <button id="backButton" style="display: none;">Back</button>
-    <button id="nextButton" style="display: none;">Next</button>
-    <button id="finishButton" style="display: none;">FINISH</button>
-    <button id="finButton" style="display: none;">Finish</button>
-    <button id="finalFinishButton" style="display: none;" onclick="handleFinalFinishButtonClick()">FINISH</button>
-</div>
-
-<div id="correctNotam" style="display: none;">!TKA 06/005 TKA RWY 18/36 REDL U/S 2406121200-2412312359</div>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        const hiddenLink = document.getElementById("hiddenLink");
-        const notamTitleElement = document.getElementById("notam-title");
-        const descriptionElement = document.getElementById("notam-description");
-        const dropzone = document.getElementById("dropzone");
-        const nextButton = document.getElementById("nextButton");
-        const backButton = document.getElementById("backButton");
-        const finishButton = document.getElementById("finishButton");
-        const finButton = document.getElementById("finButton");
-        const finalFinishButton = document.getElementById("finalFinishButton");
-        const notamDisplay = document.getElementById("correctNotam");
-        const resetButton = document.getElementById("resetButton");
-
-        const page1Description = "As the bitter Alaskan winter began to settle in, a dedicated state employee picked up the phone to report a crucial update to flight service. \"Hello, I need to inform you that Talkeetna Runway One Eight Three Six is currently experiencing an issue. The runway edge lights are out of service,\" he explained, his voice tinged with concern. \"This situation will persist from now until the end of December,\" he continued, glancing at his notes for confirmation. \"Please make sure this is communicated to all relevant parties, as it affects our operations through the end of Zulu time.\" The gravity of the message was clear, and he knew it would require pilots to exercise additional caution in the dark, frigid months ahead.";
-        
-        const page2Description = "With a sense of urgency, the state employee dialed flight service, bracing herself for the impact of her report. \"This is critical,\" she began, her voice carrying the weight of the situation. \"Gulkana Airport will be closed starting January 5, 2024, at 1200Z, this closure will extend all the way to February 8, 2024, ending at 2359Z,\" she continued, the timeline stark and uncompromising. \"This isn't just a minor inconvenience—it's a full shutdown for over a month,\" she emphasized, feeling the gravity of the situation pressing down on her. \"Please ensure all pilots are aware of the NOTAM; the consequences of missing this could be severe.\"";
-
-        const page3DescriptionPart1 = "On July 4th, 2024, at precisely 12 p.m. local time, the atmosphere was tense as the airport manager, doubling as a pilot, urgently called Kenai FSS from his satellite phone, the remote isolation of Cape Romanzof amplifying the severity of his news. \"Kenai, we have a serious issue here,\" his voice crackled through the static, a mixture of frustration and helplessness. \"There's a massive hole in the pavement, and I have no choice but to close the runway immediately, until further notice.\" The weight of his words hung heavy, the implications of such a closure reverberating through the line.";
-        
-        const page3DescriptionPart2 = "Kenai, trying to grasp the gravity of the situation, asked, \"How long do you estimate the runway will be closed?\" The manager sighed, his exhaustion palpable even over the satellite connection. \"It’s going to be a challenge to get the repairs done,\" he admitted, \"We’re facing a severe shortage of pavement supplies.\" He paused, calculating the grim timeline. \"Given the current circumstances, I estimate the runway will be closed for about six months, until the end of day Zulu.\" The long silence that followed spoke volumes about the daunting task ahead and the isolation Cape Romanzof would face in the coming months.";
-
-        const page4Description = "The quiet serenity of Valdez, Pioneer Field was soon to be interrupted by the hum of heightened activity. As the news of a significant oil discovery spread, the once sleepy airfield prepared for an influx of important pilots and their aircraft. In response, a temporary control tower was swiftly established, ensuring the increased air traffic could be managed safely and efficiently. Operating on frequency 121.7, this tower would be active daily from 1500Z to 0300Z, starting August 1, 2024. The community buzzed with anticipation as the local economy stood on the brink of transformation. With the temporary control tower operations extending until September 15, 2025 at 7pm.";
-
-        const page5Description = "On June 15, 2022, the SOC in Anchorage, dealing with a malfunctioning system, hesitantly called Fairbanks Flight Service to request assistance in issuing a NOTAM at 1415 local. The SOC employee, sounding uncertain, explained, \"Hi, could you help us out? Our system isn't working. We need a NOTAM to read, uh, that the Buckland Nondirectional Radio Beacon and Distance Measuring Equipment... is decommissioned, effective immediately.\" He paused, questioning his wording. \"Is that clear? I think that's right. Can you issue that for us?\" \(A few days later the SOC employee found himself back to remedial training).";
-
-        let currentPage = 1;
-        let savedValues = {};
-
-        function checkAnswer() {
-            if (currentPage === 5) {
-                if (dropzone.value === "!WLK 06/011 BVK NAV BVK NDB U/S 2206152215-PERM") {
-                    finishButton.style.display = "none";
-                    finButton.style.display = "none";
-                    finalFinishButton.style.display = "inline-block";
-                } else if (dropzone.value.startsWith("!WLK 06/011 BVK")) {
-                    finButton.style.display = "inline-block";
-                    finishButton.style.display = "none";
-                    finalFinishButton.style.display = "none";
-                } else {
-                    finButton.style.display = "none";
-                    finishButton.style.display = "none";
-                    finalFinishButton.style.display = "none";
-                }
-            } else if (dropzone.value === dropzone.getAttribute("data-correct")) {
-                notamDisplay.style.display = "block";
-                nextButton.style.display = "inline-block";
-            }
-            saveCurrentValues();
-        }
-
-        function resetPage() {
-            dropzone.value = "";
-            notamDisplay.style.display = "none";
-            nextButton.style.display = "none";
-            finishButton.style.display = "none";
-            finButton.style.display = "none";
-            finalFinishButton.style.display = "none";
-            hideAllNotes();
-            savedValues = {};
-            localStorage.clear();
-        }
+        const page0 = document.getElementById("page0");
+        const page1 = document.getElementById("page1");
+        const page5 = document.getElementById("page5");
+        const startButton = document.getElementById("startButton");
+        const backTo0Button = document.getElementById("backTo0");
 
         function goToPage(pageNumber) {
-            saveCurrentValues();
-            clearCurrentPage();
+            console.log('Navigating to page:', pageNumber);  // Debugging log
+            page0.classList.add("hidden");
+            page1.classList.add("hidden");
+            page5.classList.add("hidden");
+
             switch (pageNumber) {
+                case 0:
+                    page0.classList.remove("hidden");
+                    break;
                 case 1:
-                    notamTitleElement.innerText = "NOTAM 1";
-                    descriptionElement.innerText = page1Description;
-                    document.getElementById("page1-note").classList.remove("hidden");
-                    backButton.style.display = "none";
-                    dropzone.setAttribute("data-correct", "!TKA 06/005 TKA RWY 18/36 REDL U/S 2406121200-2412312359");
-                    notamDisplay.innerText = "!TKA 06/005 TKA RWY 18/36 REDL U/S 2406121200-2412312359";
-                    break;
-                case 2:
-                    notamTitleElement.innerText = "NOTAM 2";
-                    descriptionElement.innerText = page2Description;
-                    document.getElementById("page2-note").classList.remove("hidden");
-                    backButton.style.display = "inline-block";
-                    dropzone.setAttribute("data-correct", "!GKN 01/009 GKN AD AP CLSD 2401051200-2402082359");
-                    notamDisplay.innerText = "!GKN 01/009 GKN AD AP CLSD 2401051200-2402082359";
-                    break;
-                case 3:
-                    notamTitleElement.innerText = "NOTAM 3";
-                    descriptionElement.innerHTML = `<p>${page3DescriptionPart1}</p><p>${page3DescriptionPart2}</p>`;
-                    document.getElementById("page3-note").classList.remove("hidden");
-                    backButton.style.display = "inline-block";
-                    dropzone.setAttribute("data-correct", "!PACZ 07/002 CZF RWY 02/20 CLSD 2407042000-2501042359");
-                    notamDisplay.innerText = "!PACZ 07/002 CZF RWY 02/20 CLSD 2407042000-2501042359";
-                    break;
-                case 4:
-                    notamTitleElement.innerText = "NOTAM 4";
-                    descriptionElement.innerText = page4Description;
-                    document.getElementById("page4-note").classList.remove("hidden");
-                    backButton.style.display = "inline-block";
-                    dropzone.setAttribute("data-correct", "!VDZ 08/009 VDZ SVC TEMPO TWR 121.7 DLY 1500-0300 2408011500-2509160300");
-                    notamDisplay.innerText = "!VDZ 08/009 VDZ SVC TEMPO TWR 121.7 DLY 1500-0300 2408011500-2509160300";
+                    page1.classList.remove("hidden");
                     break;
                 case 5:
-                    notamTitleElement.innerText = "NOTAM 5";
-                    descriptionElement.innerText = page5Description;
-                    document.getElementById("page5-note").classList.remove("hidden");
-                    backButton.style.display = "inline-block";
-                    nextButton.style.display = "none";
-                    dropzone.setAttribute("data-correct", "!WLK 06/011 BVK NAV BVK NDB U/S 2206152215-PERM");
-                    notamDisplay.innerText = "!WLK 06/011 BVK NAV BVK NDB U/S 2206152215-PERM";
-                    dropzone.value = ""; // Ensure the dropzone is empty initially
+                    page5.classList.remove("hidden");
                     break;
             }
-            currentPage = pageNumber;
-            restoreSavedValues();
         }
-
-        function saveCurrentValues() {
-            savedValues[currentPage] = {
-                dropzoneValue: dropzone.value,
-                notamDisplayText: notamDisplay.innerText,
-                notamDisplayStyle: notamDisplay.style.display,
-                nextButtonStyle: nextButton.style.display,
-                finishButtonStyle: finishButton.style.display,
-                finButtonStyle: finButton.style.display,
-                finalFinishButtonStyle: finalFinishButton.style.display
-            };
-            // Save the value of the dropzone input for all pages
-            localStorage.setItem(`page${currentPage}DropzoneValue`, dropzone.value);
-            localStorage.setItem(`page${currentPage}NotamDisplay`, notamDisplay.style.display);
-            localStorage.setItem(`page${currentPage}NextButton`, nextButton.style.display);
-            localStorage.setItem(`page${currentPage}FinishButton`, finishButton.style.display);
-            localStorage.setItem(`page${currentPage}FinButton`, finButton.style.display);
-            localStorage.setItem(`page${currentPage}FinalFinishButton`, finalFinishButton.style.display);
-        }
-
-        function restoreSavedValues() {
-            if (savedValues[currentPage]) {
-                dropzone.value = savedValues[currentPage].dropzoneValue;
-                notamDisplay.innerText = savedValues[currentPage].notamDisplayText;
-                notamDisplay.style.display = savedValues[currentPage].notamDisplayStyle;
-                nextButton.style.display = savedValues[currentPage].nextButtonStyle;
-                finishButton.style.display = savedValues[currentPage].finishButtonStyle;
-                finButton.style.display = savedValues[currentPage].finButtonStyle;
-                finalFinishButton.style.display = savedValues[currentPage].finalFinishButtonStyle;
-            }
-            // Restore the value of the dropzone input for the current page
-            const pageDropzoneValue = localStorage.getItem(`page${currentPage}DropzoneValue`);
-            if (pageDropzoneValue) {
-                dropzone.value = pageDropzoneValue;
-            }
-            const pageNotamDisplay = localStorage.getItem(`page${currentPage}NotamDisplay`);
-            if (pageNotamDisplay) {
-                notamDisplay.style.display = pageNotamDisplay;
-            }
-            const pageNextButton = localStorage.getItem(`page${currentPage}NextButton`);
-            if (pageNextButton) {
-                nextButton.style.display = pageNextButton;
-            }
-            const pageFinishButton = localStorage.getItem(`page${currentPage}FinishButton`);
-            if (pageFinishButton) {
-                finishButton.style.display = pageFinishButton;
-            }
-            const pageFinButton = localStorage.getItem(`page${currentPage}FinButton`);
-            if (pageFinButton) {
-                finButton.style.display = pageFinButton;
-            }
-            const pageFinalFinishButton = localStorage.getItem(`page${currentPage}FinalFinishButton`);
-            if (pageFinalFinishButton) {
-                finalFinishButton.style.display = pageFinalFinishButton;
-            }
-
-            // Clear the dropzone on page 5 if returning from the image page
-            if (currentPage === 5 && !finishButton.style.display) {
-                dropzone.value = "";
-            }
-        }
-
-        function clearCurrentPage() {
-            dropzone.value = "";
-            notamDisplay.style.display = "none";
-            nextButton.style.display = "none";
-            finishButton.style.display = "none";
-            finButton.style.display = "none";
-            finalFinishButton.style.display = "none";
-            hideAllNotes();
-        }
-
-        function hideAllNotes() {
-            document.getElementById("page1-note").classList.add("hidden");
-            document.getElementById("page2-note").classList.add("hidden");
-            document.getElementById("page3-note").classList.add("hidden");
-            document.getElementById("page4-note").classList.add("hidden");
-            document.getElementById("page5-note").classList.add("hidden");
-        }
-
-        function handleFinishButtonClick() {
-            finalFinishButton.style.display = "inline-block";
-        }
-
-        function handleFinalFinishButtonClick() {
-            window.location.href = "video.mp4";
-        }
-
-        function handleFinButtonClick() {
-            saveCurrentValues(); // Ensure the input is saved before navigating away
-            localStorage.setItem('previousPage', currentPage);
-            localStorage.setItem('previousURL', window.location.href);
-            window.location.href = "image.html";
-        }
-
-        dropzone.addEventListener("input", checkAnswer);
-
-        resetButton.addEventListener("click", resetPage);
-        nextButton.addEventListener("click", function() {
-            goToPage(currentPage + 1);
-        });
-        backButton.addEventListener("click", function() {
-            goToPage(currentPage - 1);
-        });
-
-        hiddenLink.addEventListener("click", function(event) {
-            event.preventDefault();
-            if (currentPage < 5) {
-                goToPage(currentPage + 1);
-            }
-        });
-
-        finButton.addEventListener("click", handleFinButtonClick);
-        finishButton.addEventListener("click", handleFinishButtonClick);
-        finalFinishButton.addEventListener("click", handleFinalFinishButtonClick);
 
         const previousPage = localStorage.getItem('previousPage');
+        console.log('Previous page:', previousPage);  // Debugging log
+
         if (previousPage) {
             goToPage(parseInt(previousPage));
             localStorage.removeItem('previousPage');
         } else {
-            goToPage(1);
+            goToPage(0);
         }
 
-        titleElement.innerText = "NOTAM Structure";
-        notamTitleElement.innerText = "NOTAM 1";
-        descriptionElement.innerText = page1Description;
+        // Event listeners for buttons
+        startButton.addEventListener("click", function() {
+            goToPage(1);
+        });
+
+        backTo0Button.addEventListener("click", function() {
+            goToPage(0);
+        });
     });
 </script>
 
