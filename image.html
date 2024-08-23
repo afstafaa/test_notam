@@ -32,14 +32,13 @@
 <img src="images/image.png" alt="NOTAM Image">
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const backButton = document.getElementById("backButtonTop");
-
-        backButton.addEventListener("click", function() {
-            // Set currentPage to 5 in localStorage before redirecting
-            localStorage.setItem('currentPage', '5');
-            window.location.href = "index.html";
-        });
+    document.getElementById("backButtonTop").addEventListener("click", function() {
+        const previousURL = localStorage.getItem('previousURL');
+        if (previousURL) {
+            window.location.href = previousURL;
+        } else {
+            window.location.href = "image.html";
+        }
     });
 </script>
 
