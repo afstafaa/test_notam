@@ -181,13 +181,6 @@
         const finalFinishButton = document.getElementById("finalFinishButton");
         const notamDisplay = document.getElementById("correctNotam");
         const resetButton = document.getElementById("resetButton");
-        const savedPage = localStorage.getItem('currentPage');
-    
-    if (savedPage) {
-        goToPage(parseInt(savedPage));
-        localStorage.removeItem('currentPage');
-    } else {
-        goToPage(0);
 
         const page1Description = "As the bitter Alaskan winter began to settle in, a dedicated state employee picked up the phone to report a crucial update to flight service. \"Hello, I need to inform you that Talkeetna Runway One Eight Three Six is currently experiencing an issue. The runway edge lights are out of service,\" he explained, his voice tinged with concern. \"This situation will persist from now until the end of December,\" he continued, glancing at his notes for confirmation. \"Please make sure this is communicated to all relevant parties, as it affects our operations through the end of Zulu time.\" The gravity of the message was clear, and he knew it would require pilots to exercise additional caution in the dark, frigid months ahead.";
         
