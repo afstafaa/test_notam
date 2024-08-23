@@ -32,15 +32,16 @@
 <img src="images/image.png" alt="NOTAM Image">
 
 <script>
-    document.getElementById("backButtonTop").addEventListener("click", function() {
-        const previousURL = localStorage.getItem('previousURL');
-        if (previousURL) {
-            window.location.href = previousURL;
+    document.addEventListener("DOMContentLoaded", function() {
+    const backButton = document.getElementById("backButton");
+
+    backButton.addEventListener("click", function() {
+        const previousPage = localStorage.getItem('previousPage');
+        if (previousPage === '5') {
+            window.location.href = "path_to_your_html_file_for_page_5.html"; 
         } else {
             window.location.href = "image.html";
         }
     });
-</script>
+});
 
-</body>
-</html>
