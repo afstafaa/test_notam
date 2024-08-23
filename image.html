@@ -33,15 +33,18 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-    const backButton = document.getElementById("backButton");
+        const backButton = document.getElementById("backButtonTop");
 
-    backButton.addEventListener("click", function() {
-        const previousPage = localStorage.getItem('previousPage');
-        if (previousPage === '5') {
-            window.location.href = "path_to_your_html_file_for_page_5.html"; 
-        } else {
-            window.location.href = "image.html";
-        }
+        backButton.addEventListener("click", function() {
+            const previousPage = localStorage.getItem('previousPage');
+            if (previousPage === '5') {
+                window.location.href = "index.html"; 
+            } else {
+                window.location.href = "image.html"; 
+            }
+        });
     });
-});
+</script>
 
+</body>
+</html>
