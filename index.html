@@ -268,7 +268,6 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        const hiddenLink = document.getElementById("hiddenLink");
         const startButton = document.getElementById("startButton");
         const nextButton1 = document.getElementById("nextButton-1");
         const backButton2 = document.getElementById("backButton-2");
@@ -335,25 +334,27 @@
         }
 
         function saveCurrentValues() {
-            savedValues[currentPage] = {
-                dropzoneValue: document.getElementById("dropzone-" + currentPage).value,
-                notamDisplayText: document.getElementById("correctNotam-" + currentPage).innerText,
-                notamDisplayStyle: document.getElementById("correctNotam-" + currentPage).style.display,
-                nextButtonStyle: document.getElementById("nextButton-" + currentPage).style.display
-            };
+            if (currentPage !== "image") {
+                savedValues[currentPage] = {
+                    dropzoneValue: document.getElementById("dropzone-" + currentPage).value,
+                    notamDisplayText: document.getElementById("correctNotam-" + currentPage).innerText,
+                    notamDisplayStyle: document.getElementById("correctNotam-" + currentPage).style.display,
+                    nextButtonStyle: document.getElementById("nextButton-" + currentPage).style.display
+                };
 
-            localStorage.setItem(`page${currentPage}DropzoneValue`, document.getElementById("dropzone-" + currentPage).value);
-            localStorage.setItem(`page${currentPage}NotamDisplay`, document.getElementById("correctNotam-" + currentPage).style.display);
-            localStorage.setItem(`page${currentPage}NextButton`, document.getElementById("nextButton-" + currentPage).style.display);
+                localStorage.setItem(`page${currentPage}DropzoneValue`, document.getElementById("dropzone-" + currentPage).value);
+                localStorage.setItem(`page${currentPage}NotamDisplay`, document.getElementById("correctNotam-" + currentPage).style.display);
+                localStorage.setItem(`page${currentPage}NextButton`, document.getElementById("nextButton-" + currentPage).style.display);
 
-            if (currentPage === 5) {
-                localStorage.setItem(`page${currentPage}FinButton`, finButton5.style.display);
-                localStorage.setItem(`page${currentPage}FinalFinishButton`, finalFinishButton5.style.display);
+                if (currentPage === 5) {
+                    localStorage.setItem(`page${currentPage}FinButton`, finButton5.style.display);
+                    localStorage.setItem(`page${currentPage}FinalFinishButton`, finalFinishButton5.style.display);
+                }
             }
         }
 
         function restoreSavedValues() {
-            if (savedValues[currentPage]) {
+            if (currentPage !== "image" && savedValues[currentPage]) {
                 document.getElementById("dropzone-" + currentPage).value = savedValues[currentPage].dropzoneValue;
                 document.getElementById("correctNotam-" + currentPage).innerText = savedValues[currentPage].notamDisplayText;
                 document.getElementById("correctNotam-" + currentPage).style.display = savedValues[currentPage].notamDisplayStyle;
@@ -405,8 +406,20 @@
         }
 
         function handleStartButtonClick() {
+            resetAllPages();
             goToPage(1);
-            resetPage();
+        }
+
+        function resetAllPages() {
+            for (let i = 1; i <= 5; i++) {
+                document.getElementById("dropzone-" + i).value = "";
+                document.getElementById("correctNotam-" + i).style.display = "none";
+                document.getElementById("nextButton-" + i).style.display = "none";
+            }
+            finButton5.style.display = "none";
+            finalFinishButton5.style.display = "none";
+            savedValues = {};
+            localStorage.clear();
         }
 
         resetButtons.forEach(function(button) {
