@@ -36,12 +36,9 @@
         const backButton = document.getElementById("backButtonTop");
 
         backButton.addEventListener("click", function() {
-            const previousPage = localStorage.getItem('previousPage');
-            if (previousPage === '5') {
-                window.location.href = "index.html"; 
-            } else {
-                window.location.href = "image.html"; 
-            }
+            // Set currentPage to 5 in localStorage before redirecting
+            localStorage.setItem('currentPage', '5');
+            window.location.href = "index.html";
         });
     });
 </script>
