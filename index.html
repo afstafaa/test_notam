@@ -213,6 +213,7 @@
             if (resetButton.innerText === "START") {
                 resetButton.innerText = "Reset";
                 resetButton.classList.add('normal');
+                localStorage.setItem('hasStarted', true); // Store a flag to track that START was clicked
             }
         }
 
@@ -320,6 +321,12 @@
             const pageFinalFinishButton = localStorage.getItem(`page${currentPage}FinalFinishButton`);
             if (pageFinalFinishButton) {
                 finalFinishButton.style.display = pageFinalFinishButton;
+            }
+
+            // Ensure the Reset button remains labeled "Reset" if the user has started
+            if (localStorage.getItem('hasStarted')) {
+                resetButton.innerText = "Reset";
+                resetButton.classList.add('normal');
             }
 
             // Clear the dropzone on page 5 if returning from the image page
