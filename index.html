@@ -72,7 +72,7 @@
         }
 
         #resetButton.normal {
-            background-color: white;
+            background-color: #f8f8f8;
             color: black;
         }
 
@@ -136,7 +136,7 @@
 </div>
 
 <div class="button-container">
-    <button id="resetButton">Reset</button>
+    <button id="resetButton">START</button>
     <button id="backButton" style="display: none;">Back</button>
     <button id="nextButton" style="display: none;">Next</button>
     <button id="finishButton" style="display: none;">FINISH</button>
@@ -210,8 +210,10 @@
             savedValues = {};
             localStorage.clear();
 
-            // Change the Reset button style back to normal after clicking it
-            resetButton.classList.add('normal');
+            if (resetButton.innerText === "START") {
+                resetButton.innerText = "Reset";
+                resetButton.classList.add('normal');
+            }
         }
 
         function goToPage(pageNumber) {
@@ -263,11 +265,6 @@
             }
             currentPage = pageNumber;
             restoreSavedValues();
-
-            // For page 1, apply the red background and white text to the Reset button
-            if (currentPage === 1) {
-                resetButton.classList.remove('normal');
-            }
         }
 
         function saveCurrentValues() {
